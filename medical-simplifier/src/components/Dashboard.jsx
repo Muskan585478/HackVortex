@@ -14,7 +14,7 @@ function Dashboard() {
 
         <button
           style={styles.primaryButton}
-          onClick={() => navigate("/upload")}
+          onClick={() => navigate("/history")}
         >
           + New Report Interpretation
         </button>
