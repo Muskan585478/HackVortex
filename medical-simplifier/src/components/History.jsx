@@ -4,46 +4,48 @@ import { useNavigate } from "react-router-dom";
 function History() {
   const navigate = useNavigate();
 
-  // Dummy data (later fetch from backend/database)
+  // Temporary dummy data (replace later with backend data)
   const reports = [
     {
       id: 1,
-      name: "Blood_Test_Report.pdf",
+      name: "Blood Test Report",
       date: "12 Feb 2026",
-      fileUrl: "/reports/blood_test.pdf"
+      fileUrl: "/reports/Muskan Resume.pdf"
     },
     {
       id: 2,
-      name: "Xray_Report.pdf",
+      name: "X-Ray Report",
       date: "10 Feb 2026",
       fileUrl: "/reports/xray.pdf"
     }
   ];
 
   const openReport = (url) => {
-    window.open(url, "_blank"); // opens PDF in browser
+    window.open(url, "_blank");
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2 style={styles.title}>📁 Report History</h2>
+        <h2 style={styles.title}>📁 Previous Reports</h2>
         <p style={styles.subtitle}>
-          View your previously interpreted medical reports
+          Click any report to view it in your browser
         </p>
 
-        {reports.map((report) => (
-          <div
-            key={report.id}
-            style={styles.reportItem}
-            onClick={() => openReport(report.fileUrl)}
-          >
-            <div>
-              <strong>{report.name}</strong>
-              <p style={styles.date}>{report.date}</p>
+        {reports.length === 0 ? (
+          <p style={{ textAlign: "center" }}>No reports available.</p>
+        ) : (
+          reports.map((report) => (
+            <div
+              key={report.id}
+              style={styles.reportItem}
+              onClick={() => openReport(report.fileUrl)}
+            >
+              <h4 style={{ margin: "0" }}>{report.name}</h4>
+              <small style={styles.date}>{report.date}</small>
             </div>
-          </div>
-        ))}
+          ))
+        )}
 
         <button
           style={styles.backButton}
@@ -68,7 +70,7 @@ const styles = {
   card: {
     backgroundColor: "#ffffff",
     padding: "40px",
-    width: "420px",
+    width: "450px",
     borderRadius: "18px",
     boxShadow: "0 10px 30px rgba(13,110,253,0.15)",
     display: "flex",
@@ -77,29 +79,28 @@ const styles = {
   },
   title: {
     color: "#0d6efd",
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom: "5px"
   },
   subtitle: {
     fontSize: "14px",
     color: "#6c757d",
     textAlign: "center",
-    marginBottom: "10px"
+    marginBottom: "15px"
   },
   reportItem: {
     padding: "15px",
     borderRadius: "10px",
     backgroundColor: "#f8f9fa",
-    cursor: "pointer",
     border: "1px solid #dee2e6",
+    cursor: "pointer",
     transition: "0.2s"
   },
   date: {
-    fontSize: "12px",
-    color: "#6c757d",
-    marginTop: "5px"
+    color: "#6c757d"
   },
   backButton: {
-    marginTop: "15px",
+    marginTop: "20px",
     padding: "12px",
     backgroundColor: "#0d6efd",
     color: "white",
